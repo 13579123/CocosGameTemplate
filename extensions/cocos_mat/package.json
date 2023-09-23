@@ -1,0 +1,61 @@
+{
+    "package_version": 2,
+    "version": "1.0.0",
+    "name": "cocos_mat",
+    "description": "i18n:cocos_mat.description",
+    "main": "./dist/main.js",
+    "dependencies": {
+        "vue": "2.6.14",
+        "fs-extra": "^10.0.0"
+    },
+    "devDependencies": {
+        "@types/node": "^16.0.1",
+        "@types/fs-extra": "^9.0.5",
+        "typescript": "^4.3.4"
+    },
+    "panels": {
+        "default": {
+            "title": "cocos_mat Default Panel",
+            "type": "dockable",
+            "main": "dist/panels/default",
+            "size": {
+                "min-width": 400,
+                "min-height": 300,
+                "width": 1024,
+                "height": 600
+            }
+        }
+    },
+    "contributions": {
+        "menu": [
+            {
+                "path": "i18n:menu.panel/cocos_mat",
+                "label": "i18n:cocos_mat.open_panel",
+                "message": "open-panel"
+            },
+            {
+                "path": "i18n:menu.develop/cocos_mat",
+                "label": "i18n:cocos_mat.send_to_panel",
+                "message": "send-to-panel"
+            }
+        ],
+        "messages": {
+            "open-panel": {
+                "methods": [
+                    "openPanel"
+                ]
+            },
+            "send-to-panel": {
+                "methods": [
+                    "default.hello"
+                ]
+            }
+        }
+    },
+    "author": "XiaoJiangBuHuiA",
+    "editor": ">=3.7.4",
+    "scripts": {
+        "build": "tsc -b",
+        "watch": "tsc -w"
+    }
+}
