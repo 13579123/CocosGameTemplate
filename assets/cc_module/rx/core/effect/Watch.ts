@@ -1,6 +1,7 @@
-// watch类，每个effect对应一个watch，watch对应多个reactive对象，每个reactive对象改变会通知所有effect执行
+import { error } from "cc";
 import {getCurrentWatch, setCurrentWatch} from "./cache";
 
+// watch类，每个effect对应一个watch，watch对应多个reactive对象，每个reactive对象改变会通知所有effect执行
 export class Watch {
 
   // 是否活跃
@@ -42,7 +43,7 @@ export class Watch {
     // 执行用户函数
     try {
       this.fn()
-    } catch (e) {throw e} finally {
+    } catch (e) {error(e)} finally {
       // 出栈父元素
       setCurrentWatch(this.parent)
       this.parent = null
