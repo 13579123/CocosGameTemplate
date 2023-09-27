@@ -12,7 +12,8 @@ export function reactive<T extends object>(o: T): T {
     get(target: T, p: string | symbol, receiver: any): any {
       const result = Reflect.get(target , p , receiver)
       // 收集对应的watch
-      if (getCurrentWatch() !== null) {
+      const currentWatch = getCurrentWatch()
+      if (currentWatch !== null) {
         let map = REACTIVE_TO_WATCH.get(target)
         if (!map) {
           map = new Map
@@ -23,8 +24,8 @@ export function reactive<T extends object>(o: T): T {
           set = new Set
           map.set(p as string , set)
         }
-        set.add(getCurrentWatch())
-        getCurrentWatch().__allDep.add(set)
+        set.add(currentWatch)
+        currentWatch.__allDep.add(set)
       }
       if (typeof result === 'object') return reactive(result)
       else return result
